@@ -1,0 +1,182 @@
+// Colors and other variables
+$border-color: #ebedf2;
+$title-color: #898b96;
+
+$green: #2ecc71;
+$turquoise: #1abc9c;
+$navy: #34495e;
+$blue: #3498db;
+$purple: #9b59b6;
+$grey: #bdc3c7;
+$gray: #7f8c8d;
+$red: #e74c3c;
+$orange: #f39c12;
+$yellow: #f1c40f;
+
+$event-padding: 10px;
+$event-margin-bottom: 5px;
+$font-size-small: 12px;
+$font-size-footer: 11px;
+$font-size-footer-day: 13px;
+
+// Event colors
+.green { background-color: $green; }
+.turquoise { background-color: $turquoise; }
+.navy { background-color: $navy; }
+.blue { background-color: $blue; }
+.purple { background-color: $purple; }
+.grey { background-color: $grey; color: #202020; }
+.gray { background-color: $gray; }
+.red { background-color: $red; }
+.orange { background-color: $orange; }
+.yellow { background-color: $yellow; color: #303030; }
+
+.day-columns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: center;
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .day-column {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 400px;
+    min-width: 160px;
+    border: 1px solid $border-color;
+    border-left: none;
+    &:first-child {
+      border-left: 1px solid $border-color;
+    }
+
+    .day-header {
+      border-bottom: 1px solid $border-color;
+      text-align: center;
+      padding: 5px;
+      color: $title-color;
+      font-size: $font-size-footer-day;
+    }
+
+    .day-content {
+      flex-grow: 1;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 5px;
+      overflow-y: auto;
+
+      .event {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-bottom: $event-margin-bottom;
+        border-radius: 5px;
+        padding: $event-padding;
+        color: white;
+        box-shadow: 0px 1px 15px 1px rgba(81, 77, 92, 0.08);
+        .title {
+          font-size: $font-size-small;
+        }
+
+        footer {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          font-size: $font-size-footer;
+        }
+      }
+    }
+
+    .day-footer {
+      border-top: 1px solid $border-color;
+      padding: 5px;
+      text-align: center;
+      font-size: $font-size-footer-day;
+      color: darken($title-color, 20%);
+    }
+  }
+}
+
+.container {
+  margin-top: 20px;
+  // border: 1px solid $border-color;
+}
+
+$today-border: #3498db;
+
+.day-column.today {
+  border: 2px solid $today-border;
+  background-color: lighten($today-border, 40%);
+  .day-header {
+    font-weight: bold;
+    color: $today-border;
+  }
+}
+
+
+// Media queries for mobile responsiveness
+@media (max-width: 768px) {
+  .container {
+    margin-top: 10px;
+  }
+
+  .day-columns {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .day-column {
+    width: 100%;
+    margin-bottom: 20px; // Adds space between the columns
+    height: auto; // Let the column height adapt to the content
+  }
+
+  .day-header {
+    font-size: 1em; // Adjust the font size of the headers
+  }
+
+  .day-footer {
+    font-size: 12px; // Smaller font for footer on mobile
+  }
+
+  .event {
+    margin-bottom: 10px; // Add some space between events
+  }
+
+  .event .title {
+    font-size: 14px; // Increase font size for better readability
+  }
+
+  footer {
+    font-size: 10px; // Adjust footer text size for mobile
+  }
+}
+
+// For very small screens (portrait mode on small phones)
+@media (max-width: 480px) {
+  .day-columns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .day-column {
+    width: 100%; // Full width on very small screens
+    margin-bottom: 15px;
+  }
+
+  .event {
+    padding: 8px; // Smaller padding on small screens
+  }
+
+  .day-header {
+    font-size: 1.2em; // Slightly bigger text for mobile headers
+  }
+
+  .day-footer {
+    font-size: 11px; // Further reduce footer font size for small screens
+  }
+}
